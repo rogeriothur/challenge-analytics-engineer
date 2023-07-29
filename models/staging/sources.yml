@@ -1,0 +1,79 @@
+version: 2
+
+sources:
+  - name: erp
+    description: Fonte de dados da Northwind
+    schema: erp_northwind
+
+    tables:
+      - name: employees
+        description: Tabela com informações de funcionários
+        columns:
+          - name: employee_id
+            description: It's a primary key from employees table
+            tests:
+              - unique
+              - not null
+      
+      - name: orders
+        description: Tabela contendo os pedidos e data de envio
+        columns:
+          - name: order_id
+            description: Chave primária da tabela orders
+            tests: 
+              - unique
+              - not_null
+
+      - name: order_details
+        description: Tabela contendo o produto vendido em cada ordem, preço e desconto
+        columns:
+          - name: order_id
+            description: Chave primária da tabela order_details
+            tests: 
+              - unique
+              - not_null              
+
+      - name: products
+        description: Tabela com o cadastro dos produtos comercializados na Northwind
+        columns:
+          - name: product_id
+            description: Chave primária da tabela de produtos.
+            tests:
+              - unique
+              - not_null
+
+      - name: categories
+        description: Tabela com a categoria dos produto e sua descrição
+        columns:
+          - name: category_id
+            description: Chave primária da tabela categories
+            tests:
+              - unique
+              - not_null
+              
+      - name: suppliers
+        description: Tabela com as informações dos fornecedores dos produtos da Northwind
+        columns:
+          - name: supplier_id
+            description: Chave primária da tabela suppliers
+            tests:
+              - unique
+              - not_null
+
+      - name: shippers
+        description: Tabela com as informações das transportadoras usadas pela Northwind
+        columns:
+          - name: shipper_id
+            description: Chave primária da tabela shippers
+            tests:
+              - unique
+              - not_null
+
+      - name: customers
+        description: Tabela com as informações dos clientes da Northwind
+        columns:
+          - name: customer_id
+            description: Chave primária da tabela customer
+            tests:
+              - unique
+              - not_null
