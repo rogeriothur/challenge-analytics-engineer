@@ -2,12 +2,12 @@ version: 2
 
 sources:
   - name: erp
-    description: Fonte de dados da Northwind
+    description: Northwind data source
     schema: erp_northwind
 
     tables:
       - name: employees
-        description: Tabela com informações de funcionários
+        description: Table with employee data
         columns:
           - name: employee_id
             description: It's a primary key from employees table
@@ -16,64 +16,64 @@ sources:
               - not null
       
       - name: orders
-        description: Tabela contendo os pedidos e data de envio
+        description: Table with order data
         columns:
           - name: order_id
-            description: Chave primária da tabela orders
+            description: Orders table primary key
             tests: 
               - unique
               - not_null
 
       - name: order_details
-        description: Tabela contendo o produto vendido em cada ordem, preço e desconto
+        description: Table containing the product sold in each order, price and discount
         columns:
           - name: order_id
-            description: Chave primária da tabela order_details
+            description: Order_details table primary key
             tests: 
               - unique
               - not_null              
 
       - name: products
-        description: Tabela com o cadastro dos produtos comercializados na Northwind
+        description: Table with the registration of products sold at Northwind
         columns:
           - name: product_id
-            description: Chave primária da tabela de produtos.
+            description: Products table primary key
             tests:
               - unique
               - not_null
 
       - name: categories
-        description: Tabela com a categoria dos produto e sua descrição
+        description: Table with the product category and its description
         columns:
           - name: category_id
-            description: Chave primária da tabela categories
+            description: Categories table primary key
             tests:
               - unique
               - not_null
               
       - name: suppliers
-        description: Tabela com as informações dos fornecedores dos produtos da Northwind
+        description: Table with information on suppliers of Northwind products
         columns:
           - name: supplier_id
-            description: Chave primária da tabela suppliers
+            description: Suppliers table primary key
             tests:
               - unique
               - not_null
 
       - name: shippers
-        description: Tabela com as informações das transportadoras usadas pela Northwind
+        description: Table with carrier information used by Northwind
         columns:
           - name: shipper_id
-            description: Chave primária da tabela shippers
+            description: Shippers table primary key
             tests:
               - unique
               - not_null
 
       - name: customers
-        description: Tabela com as informações dos clientes da Northwind
+        description: Northwind customer information table
         columns:
           - name: customer_id
-            description: Chave primária da tabela customer
+            description: customer table primary key
             tests:
               - unique
               - not_null
