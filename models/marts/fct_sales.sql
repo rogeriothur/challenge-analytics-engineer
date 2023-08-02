@@ -60,10 +60,20 @@ int_fct_vendas AS (
         products ON order_items.product_id = products.product_id
 ),
 
+first_orders AS (
+    SELECT
+        customer_fk,
+        MIN(order_date) as first_order_date
+    FROM
+        int_fct_vendas
+    GROUP BY
+        customer_fk
+),
+
 fct_sales AS (
     SELECT
         {{ dbt_utils.generate_surrogate_key(['order_id', 'product_fk']) }} AS sale_sk
-        , *
+        , sales.*
         , unit_price * quantity AS gross_total
         , (1 - discount) * unit_price * quantity AS net_total
         , CASE
@@ -71,8 +81,14 @@ fct_sales AS (
             WHEN discount = 0 THEN FALSE
             ELSE FALSE
         END AS is_discount
+        , CASE
+            WHEN sales.order_date = fo.first_order_date THEN 1
+            ELSE 0
+        END AS is_first_order
     FROM
-        int_fct_vendas
+        int_fct_vendas sales
+    LEFT JOIN
+        first_orders fo ON sales.customer_fk = fo.customer_fk
 )
 
 SELECT * FROM fct_sales
