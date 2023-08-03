@@ -12,6 +12,7 @@ self_join AS (
 
         -- strings
         , employees.employee_name
+        , employees.employee_title
         , manager.employee_name AS manager_name
         , employees.employee_address
         , employees.employee_city

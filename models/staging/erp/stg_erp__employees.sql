@@ -12,6 +12,7 @@ employees AS (
 
         -- strings
         , CAST((first_name || ' ' || last_name) AS string) AS employee_name	
+        , title AS employee_title
         , address AS employee_address
         , city AS employee_city
         , region AS employee_region

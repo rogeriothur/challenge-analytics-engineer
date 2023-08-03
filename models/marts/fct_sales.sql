@@ -45,6 +45,7 @@ int_fct_vendas AS (
 
         , customers.customer_name
         , employees.employee_name
+        , employees.employee_title
         , employees.manager_name
         , products.product_name
         , products.category_name
@@ -63,6 +64,8 @@ int_fct_vendas AS (
 first_orders AS (
     SELECT
         customer_fk,
+        EXTRACT(YEAR from MIN(order_date)) as first_order_year,
+        EXTRACT(MONTH from MIN(order_date)) as first_order_month,
         MIN(order_date) as first_order_date
     FROM
         int_fct_vendas
@@ -82,9 +85,13 @@ fct_sales AS (
             ELSE FALSE
         END AS is_discount
         , CASE
-            WHEN sales.order_date = fo.first_order_date THEN 1
+            WHEN
+                EXTRACT(YEAR FROM sales.order_date) = fo.first_order_year
+                AND EXTRACT(MONTH FROM sales.order_date) = fo.first_order_month
+            THEN 1
             ELSE 0
         END AS is_first_order
+        , (unit_price * quantity) * discount AS discount_cash
     FROM
         int_fct_vendas sales
     LEFT JOIN
