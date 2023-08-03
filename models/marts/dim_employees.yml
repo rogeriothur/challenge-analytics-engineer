@@ -1,0 +1,19 @@
+
+version: 2
+
+models:
+  - name: dim_employees
+    description: This is the dimension with employee data
+    columns:
+      - name: employee_sk
+        description: This is the table's surrogate key
+        tests:
+          - unique
+          - not_null
+
+      - name: employee_id
+        description: This is the primary key for employees
+        tests:
+          - unique
+          - not_null
+          

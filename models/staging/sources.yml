@@ -1,0 +1,79 @@
+version: 2
+
+sources:
+  - name: erp
+    description: Northwind data source
+    schema: erp_northwind
+
+    tables:
+      - name: employees
+        description: Table with employee data
+        columns:
+          - name: employee_id
+            description: It's a primary key from employees table
+            tests:
+              - unique
+              - not null
+      
+      - name: orders
+        description: Table with order data
+        columns:
+          - name: order_id
+            description: Orders table primary key
+            tests: 
+              - unique
+              - not_null
+
+      - name: order_details
+        description: Table containing the product sold in each order, price and discount
+        columns:
+          - name: order_id
+            description: Order_details table primary key
+            tests: 
+              - unique
+              - not_null              
+
+      - name: products
+        description: Table with the registration of products sold at Northwind
+        columns:
+          - name: product_id
+            description: Products table primary key
+            tests:
+              - unique
+              - not_null
+
+      - name: categories
+        description: Table with the product category and its description
+        columns:
+          - name: category_id
+            description: Categories table primary key
+            tests:
+              - unique
+              - not_null
+              
+      - name: suppliers
+        description: Table with information on suppliers of Northwind products
+        columns:
+          - name: supplier_id
+            description: Suppliers table primary key
+            tests:
+              - unique
+              - not_null
+
+      - name: shippers
+        description: Table with carrier information used by Northwind
+        columns:
+          - name: shipper_id
+            description: Shippers table primary key
+            tests:
+              - unique
+              - not_null
+
+      - name: customers
+        description: Northwind customer information table
+        columns:
+          - name: customer_id
+            description: customer table primary key
+            tests:
+              - unique
+              - not_null
