@@ -1,0 +1,18 @@
+version: 2
+
+models:
+  - name: dim_customers
+    description: This is the dimension with customer data
+    columns:
+      - name: customer_sk
+        description: This is the surrogate key for the table.
+        tests:
+          - unique
+          - not_null
+
+      - name: customer_id
+        description: This is the primary key for customers
+        tests:
+          - unique
+          - not_null
+          

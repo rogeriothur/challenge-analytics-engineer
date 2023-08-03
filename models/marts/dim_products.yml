@@ -1,0 +1,29 @@
+version: 2
+
+models:
+  - name: dim_products
+    description: This is the dimension with product data
+    columns:
+      - name: product_sk
+        description: This is the surrogate key for the table.
+        tests:
+          - unique
+          - not_null
+
+      - name: product_id
+        description: This is the primary product key
+        tests:
+          - unique
+          - not_null
+
+      - name: supplier_id
+        description: This is the primary key of suppliers
+        tests:
+          - unique
+          - not_null
+
+      - name: category_id
+        description: This is the primary key of categories
+        tests:
+          - unique
+          - not_null

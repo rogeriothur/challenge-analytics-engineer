@@ -1,0 +1,52 @@
+
+version: 2
+
+models:
+  - name: fct_sales
+    description: This is the sales fact table
+    columns:
+      - name: sale_sk
+        description: This is the table's surrogate key
+        tests:
+          - unique
+          - not_null
+
+      - name: customer_fk
+        description: Foreign key that links the fact table with the dim_customers
+        tests:
+          - relationships:
+              field: customer_sk
+              to: ref('dim_customers')
+      
+
+      - name: employee_fk
+        description: Foreign key that links the fact table with the dim_employees
+        tests:
+          - relationships:
+              field: employee_sk
+              to: ref('dim_employees')
+
+      - name: product_fk
+        description: Foreign key that links the fact table with the dim_produtcs
+        tests:
+          - relationships:
+              field: product_sk
+              to: ref('dim_products')
+      
+      - name: order_id
+        description: order identifier
+      
+      - name: order_date
+        description: Dates the sales order was created
+
+      - name: product_name
+        description: 	Name of the product
+
+      - name: category_name
+        description: Category of the product
+      
+      - name: quantity
+        description: Quantity ordered per product
+      
+      - name: unit_price
+        description: Selling price of a single product
